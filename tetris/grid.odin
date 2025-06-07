@@ -29,3 +29,52 @@ grid_initialize :: proc(grid: ^Grid) {
 		}
 	}
 }
+
+is_cell_outside :: proc(grid: ^Grid, row: int, column: int) -> bool {
+	if row >= 0 && row < grid.num_rows && column >= 0 && column < grid.num_cols {
+		return false
+	}
+	return true
+}
+
+is_cell_empty :: proc(grid: ^Grid, row: int, column: int) -> bool {
+	if grid.grid[row][column] == 0 {
+		return true
+	}
+	return false
+}
+
+clear_full_rows :: proc(grid: ^Grid) -> int {
+	completed := 0
+	for row := grid.num_rows - 1; row >= 0; row -= 1 {
+		if is_row_full(grid, row) {
+			clear_row(grid, row)
+			completed += 1
+		} else if completed > 0 {
+			move_row_down(grid, row, completed)
+		}
+	}
+	return completed
+}
+
+is_row_full :: proc(grid: ^Grid, row: int) -> bool {
+	for column := 0; column < grid.num_cols; column += 1 {
+		if grid.grid[row][column] == 0 {
+			return false
+		}
+	}
+	return true
+}
+
+clear_row :: proc(grid: ^Grid, row: int) {
+	for column := 0; column < grid.num_cols; column += 1 {
+		grid.grid[row][column] = 0
+	}
+}
+
+move_row_down :: proc(grid: ^Grid, row: int, num_rows: int) {
+	for column := 0; column < grid.num_cols; column += 1 {
+		grid.grid[row + num_rows][column] = grid.grid[row][column]
+		grid.grid[row][column] = 0
+	}
+}

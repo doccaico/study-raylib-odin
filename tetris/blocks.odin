@@ -2,16 +2,6 @@ package tetris
 
 import rl "vendor:raylib"
 
-Block :: struct {
-	id:             int,
-	cells:          map[int][dynamic]Position,
-	cell_size:      int,
-	rotation_state: int,
-	colors:         [dynamic]rl.Color,
-	row_offset:     int,
-	column_offset:  int,
-}
-
 LBlock :: struct {
 	using block: Block,
 }

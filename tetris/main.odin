@@ -52,10 +52,11 @@ main :: proc() {
 	defer rl.UnloadFont(font)
 
 	game := game()
+	defer game_deinit(&game)
 
 	for !rl.WindowShouldClose() {
-		// UpdateMusicStream(game.music)
-		// game.HandleInput()
+		rl.UpdateMusicStream(game.music)
+		handle_input(&game)
 		// if (EventTriggered(0.2)) {
 		// 	game.MoveBlockDown()
 		// }

@@ -54,7 +54,9 @@ goto :EOF
 goto :EOF
 
 :TETRIS
-    odin run %1 %flags% -out:%1\%1.exe
+    pushd %1
+    odin run . %flags% -out:%1.exe
+    popd
 goto :EOF
 
 REM vim: ft=dosbatch fenc=utf8 ff=dos
