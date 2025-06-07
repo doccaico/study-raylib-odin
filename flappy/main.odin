@@ -1,4 +1,4 @@
-package main
+package flappy
 
 import "core:fmt"
 import "core:math/rand"
