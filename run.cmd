@@ -16,7 +16,7 @@ if "%2" == "" (
 )
 
 
-set flags=--keep-executable
+set flags=-keep-executable
 
 if %release_mode% equ 0 ( REM Debug
     set flags=%flags% -debug
