@@ -46,12 +46,12 @@ main :: proc() {
 	// }
 
 	rl.InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE)
-	rl.SetTargetFPS(60)
+	rl.SetTargetFPS(FPS)
 
 	font := rl.LoadFontEx("fonts/monogram.ttf", 64, nil, 0)
 	defer rl.UnloadFont(font)
 
-	// game := game()
+	game := game()
 
 	for !rl.WindowShouldClose() {
 		// UpdateMusicStream(game.music)
