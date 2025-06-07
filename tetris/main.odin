@@ -57,9 +57,9 @@ main :: proc() {
 	for !rl.WindowShouldClose() {
 		rl.UpdateMusicStream(game.music)
 		handle_input(&game)
-		// if (EventTriggered(0.2)) {
-		// 	game.MoveBlockDown()
-		// }
+		if event_triggered(0.2) {
+			move_block_down(&game)
+		}
 
 		rl.BeginDrawing()
 		rl.ClearBackground(darkblue)
@@ -76,6 +76,7 @@ main :: proc() {
 		//
 		// DrawTextEx(font, scoreText, {320 + (170 - textSize.x) / 2, 65}, 38, 2, WHITE)
 		// DrawRectangleRounded({320, 215, 170, 180}, 0.3, 6, lightBlue)
+		// TODO
 		// game.Draw()
 		rl.EndDrawing()
 	}
