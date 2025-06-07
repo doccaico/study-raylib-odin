@@ -26,7 +26,7 @@ if %release_mode% equ 0 ( REM Debug
 
 
 if        "%1" == "lifegame"        ( goto :LIFEGAME
-REM ) else if "%1" == "window"          ( goto :WINDOW
+) else if "%1" == "flappy"          ( goto :FLAPPY
 ) else                              ( goto :HELP
 )
 
@@ -40,6 +40,10 @@ goto :EOF
 
 
 :LIFEGAME
+    odin run %1 %flags% -out:%1\%1.exe
+goto :EOF
+
+:FLAPPY
     odin run %1 %flags% -out:%1\%1.exe
 goto :EOF
 
