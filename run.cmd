@@ -28,6 +28,7 @@ if %release_mode% equ 0 ( REM Debug
 if        "%1" == "lifegame"        ( goto :LIFEGAME
 ) else if "%1" == "flappy"          ( goto :FLAPPY
 ) else if "%1" == "breakout"        ( goto :BREAKOUT
+) else if "%1" == "tetris"          ( goto :TETRIS
 ) else                              ( goto :HELP
 )
 
@@ -52,5 +53,8 @@ goto :EOF
     odin run %1 %flags% -out:%1\%1.exe
 goto :EOF
 
+:TETRIS
+    odin run %1 %flags% -out:%1\%1.exe
+goto :EOF
 
 REM vim: ft=dosbatch fenc=utf8 ff=dos

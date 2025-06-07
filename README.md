@@ -1,6 +1,6 @@
 ## study-raylib-odin
 
-### Build and Run
+### Build and Run (on Windows)
 ```sh
 ## Debug
 $ run.cmd lifegame
