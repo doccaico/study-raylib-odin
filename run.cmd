@@ -21,7 +21,7 @@ set flags=--keep-executable
 if %release_mode% equ 0 ( REM Debug
     set flags=%flags% -debug
 ) else ( REM Release
-    set flags=%flags% -o:speed -subsystem:windows
+    set flags=%flags% -o:speed -no-bounds-check -subsystem:windows
 )
 
 
