@@ -5,6 +5,10 @@
 I have  memory leaks so I made some modifications.
 
 ### Play
+- [↑] - Rotate
+- [↓] - Down
+- [←] - Left
+- [→] - Right
 
 ![tetris](https://github.com/user-attachments/assets/810f0d01-29a7-4705-87cf-5f677f8a399d)
 
