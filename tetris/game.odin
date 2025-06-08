@@ -34,6 +34,8 @@ game :: proc() -> Game {
 }
 
 game_deinit :: proc(game: ^Game) {
+	blocks_deinit(game.blocks)
+	colors_deinit(game.grid.colors)
 	rl.UnloadSound(game.rotate_sound)
 	rl.UnloadSound(game.clear_sound)
 	rl.UnloadMusicStream(game.music)
@@ -41,7 +43,7 @@ game_deinit :: proc(game: ^Game) {
 }
 
 get_all_blocks :: proc() -> [dynamic]Block {
-	blocks := make([dynamic]Block, 7)
+	blocks := make([dynamic]Block, 0, 7)
 
 	append(&blocks, iblock())
 	append(&blocks, jblock())
@@ -54,7 +56,6 @@ get_all_blocks :: proc() -> [dynamic]Block {
 	return blocks
 }
 
-// https://github.com/educ8s/Cpp-Tetris-Game-with-raylib/blob/main/src/game.cpp
 get_random_block :: proc(game: ^Game) -> Block {
 	if len(game.blocks) == 0 {
 		game.blocks = get_all_blocks()
@@ -122,6 +123,7 @@ move_block_down :: proc(game: ^Game) {
 
 is_block_outside :: proc(game: ^Game) -> bool {
 	tiles := get_cell_positions(&game.current_block)
+	defer delete(tiles)
 	for item in tiles {
 		if is_cell_outside(&game.grid, item.row, item.column) {
 			return true
@@ -132,6 +134,7 @@ is_block_outside :: proc(game: ^Game) -> bool {
 
 block_fits :: proc(game: ^Game) -> bool {
 	tiles := get_cell_positions(&game.current_block)
+	defer delete(tiles)
 	for item in tiles {
 		if is_cell_empty(&game.grid, item.row, item.column) == false {
 			return false
@@ -142,13 +145,17 @@ block_fits :: proc(game: ^Game) -> bool {
 
 lock_block :: proc(game: ^Game) {
 	tiles := get_cell_positions(&game.current_block)
+	defer delete(tiles)
 	for item in tiles {
 		game.grid.grid[item.row][item.column] = game.current_block.id
 	}
+
 	game.current_block = game.next_block
+
 	if block_fits(game) == false {
 		game.gameover = true
 	}
+
 	game.next_block = get_random_block(game)
 	rows_cleared := clear_full_rows(&game.grid)
 	if rows_cleared > 0 {
@@ -179,5 +186,19 @@ rotate_block :: proc(game: ^Game) {
 		} else {
 			rl.PlaySound(game.rotate_sound)
 		}
+	}
+}
+
+draw_game :: proc(game: ^Game) {
+	draw_grid(&game.grid)
+	draw_block(&game.current_block, 11, 11)
+
+	switch game.next_block.id {
+	case 3:
+		draw_block(&game.next_block, 255, 290)
+	case 4:
+		draw_block(&game.next_block, 255, 280)
+	case:
+		draw_block(&game.next_block, 270, 270)
 	}
 }

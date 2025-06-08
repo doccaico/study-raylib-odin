@@ -78,3 +78,18 @@ move_row_down :: proc(grid: ^Grid, row: int, num_rows: int) {
 		grid.grid[row][column] = 0
 	}
 }
+
+draw_grid :: proc(grid: ^Grid) {
+	for row := 0; row < grid.num_rows; row += 1 {
+		for column := 0; column < grid.num_cols; column += 1 {
+			cell_value := grid.grid[row][column]
+			rl.DrawRectangle(
+				i32(column * grid.cell_size + 11),
+				i32(row * grid.cell_size + 11),
+				i32(grid.cell_size - 1),
+				i32(grid.cell_size - 1),
+				grid.colors[cell_value],
+			)
+		}
+	}
+}

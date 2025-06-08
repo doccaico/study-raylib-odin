@@ -1,5 +1,7 @@
 ## tetris
 
+It seems work well. But it has a ton of memory leaks.
+
 ### Play
 
-参照先: [educ8s/Cpp-Tetris-Game-with-raylib](https://github.com/educ8s/Cpp-Tetris-Game-with-raylib)
+Ref: [educ8s/Cpp-Tetris-Game-with-raylib](https://github.com/educ8s/Cpp-Tetris-Game-with-raylib)

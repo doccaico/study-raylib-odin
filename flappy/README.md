@@ -5,4 +5,4 @@
 
 ![flappy](https://github.com/user-attachments/assets/e25798a7-7397-4e14-ae07-eabbf5ba9551)
 
-参照先: [はねるgopherくんゲームを作ろう](https://zenn.dev/eihigh/books/ebitengine-book/viewer/flappy1)
+Ref: [はねるgopherくんゲームを作ろう](https://zenn.dev/eihigh/books/ebitengine-book/viewer/flappy1)

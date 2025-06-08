@@ -10,11 +10,11 @@ yellow :: rl.Color{237, 234, 4, 255}
 purple :: rl.Color{166, 0, 247, 255}
 cyan :: rl.Color{21, 204, 209, 255}
 blue :: rl.Color{13, 64, 216, 255}
-lightBlue :: rl.Color{59, 85, 162, 255}
+lightblue :: rl.Color{59, 85, 162, 255}
 darkblue :: rl.Color{44, 44, 127, 255}
 
 get_cell_colors :: proc() -> [dynamic]rl.Color {
-	colors := make([dynamic]rl.Color, 8)
+	colors := make([dynamic]rl.Color, 0, 8)
 
 	append(&colors, darkgrey)
 	append(&colors, green)
@@ -26,4 +26,8 @@ get_cell_colors :: proc() -> [dynamic]rl.Color {
 	append(&colors, blue)
 
 	return colors
+}
+
+colors_deinit :: proc(colors: [dynamic]rl.Color) {
+	delete(colors)
 }
