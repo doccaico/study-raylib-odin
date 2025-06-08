@@ -29,6 +29,7 @@ if        "%1" == "lifegame"        ( goto :LIFEGAME
 ) else if "%1" == "flappy"          ( goto :FLAPPY
 ) else if "%1" == "breakout"        ( goto :BREAKOUT
 ) else if "%1" == "tetris"          ( goto :TETRIS
+) else if "%1" == "asteroids"       ( goto :ASTEROIDS
 ) else                              ( goto :HELP
 )
 
@@ -54,6 +55,12 @@ goto :EOF
 goto :EOF
 
 :TETRIS
+    pushd %1
+    odin run . %flags% -out:%1.exe
+    popd
+goto :EOF
+
+:ASTEROIDS
     pushd %1
     odin run . %flags% -out:%1.exe
     popd
