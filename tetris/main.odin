@@ -65,7 +65,7 @@ main :: proc() {
 		rl.DrawTextEx(font, "Score", {365, 15}, 38, 2, rl.WHITE)
 		rl.DrawTextEx(font, "Next", {370, 175}, 38, 2, rl.WHITE)
 		if game.gameover {
-			rl.DrawTextEx(font, "GAME OVER", rl.Vector2{320, 450}, 38, 2, rl.WHITE)
+			rl.DrawTextEx(font, "GAME OVER", {320, 450}, 38, 2, rl.WHITE)
 		}
 		rl.DrawRectangleRounded({320, 55, 170, 60}, 0.3, 6, lightblue)
 

@@ -1,5 +1,6 @@
 package tetris
 
+import "core:fmt"
 import "core:math/rand"
 import rl "vendor:raylib"
 
@@ -35,7 +36,8 @@ game :: proc() -> Game {
 
 game_deinit :: proc(game: ^Game) {
 	blocks_deinit(game.blocks)
-	colors_deinit(game.grid.colors)
+	grid_deinit(&game.grid)
+
 	rl.UnloadSound(game.rotate_sound)
 	rl.UnloadSound(game.clear_sound)
 	rl.UnloadMusicStream(game.music)
@@ -57,12 +59,21 @@ get_all_blocks :: proc() -> [dynamic]Block {
 }
 
 get_random_block :: proc(game: ^Game) -> Block {
-	if len(game.blocks) == 0 {
-		game.blocks = get_all_blocks()
-	}
+	//
+	// Meaningless code.
+	//
+	// if len(game.blocks) == 0 {
+	// 	game.blocks = get_all_blocks()
+	// }
+
 	random_index := rand.int31() % i32(len(game.blocks))
 	block := game.blocks[random_index]
-	ordered_remove(&game.blocks, random_index)
+
+	//
+	// The source of the memory leak. Maybe.
+	//
+	// ordered_remove(&game.blocks, random_index)
+
 	return block
 }
 
@@ -87,7 +98,10 @@ handle_input :: proc(game: ^Game) {
 
 reset :: proc(game: ^Game) {
 	grid_initialize(&game.grid)
-	game.blocks = get_all_blocks()
+	//
+	// Unnecessary code.
+	//
+	// game.blocks = get_all_blocks()
 	game.current_block = get_random_block(game)
 	game.next_block = get_random_block(game)
 	game.score = 0

@@ -30,6 +30,10 @@ grid_initialize :: proc(grid: ^Grid) {
 	}
 }
 
+grid_deinit :: proc(grid: ^Grid) {
+	colors_deinit(grid.colors)
+}
+
 is_cell_outside :: proc(grid: ^Grid, row: int, column: int) -> bool {
 	if row >= 0 && row < grid.num_rows && column >= 0 && column < grid.num_cols {
 		return false

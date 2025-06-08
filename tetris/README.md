@@ -1,6 +1,8 @@
 ## tetris
 
-It seems work well. But it has a ton of memory leaks.
+~~It seems work well. But it has a ton of memory leaks.~~
+
+I have  memory leaks so I made some modifications.
 
 ### Play
 

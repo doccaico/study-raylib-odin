@@ -3,22 +3,8 @@ package tetris
 import rl "vendor:raylib"
 
 blocks_deinit :: proc(blocks: [dynamic]Block) {
-	// for block in blocks {
-	// 	switch block.id {
-	// 	case 1 ..< 4:
-	// 		for i := 0; i < 4; i += 1 {
-	// 			delete(block.cells[i])
-	// 		}
-	// 	case 4:
-	// 		delete(block.cells[0])
-	// 	case 5 ..< 8:
-	// 		for i := 0; i < 4; i += 1 {
-	// 			delete(block.cells[i])
-	// 		}
-	// 	}
-	// }
 	for &block in blocks {
-		block_deinitialize(&block)
+		block_deinit(&block)
 	}
 	delete(blocks)
 }
@@ -30,7 +16,7 @@ LBlock :: struct {
 lblock :: proc() -> Block {
 	lblock: LBlock
 
-	block_initialize(&lblock)
+	block_init(&lblock)
 
 	lblock.id = 1
 
@@ -70,7 +56,7 @@ JBlock :: struct {
 jblock :: proc() -> Block {
 	jblock: JBlock
 
-	block_initialize(&jblock)
+	block_init(&jblock)
 
 	jblock.id = 2
 
@@ -110,7 +96,7 @@ IBlock :: struct {
 iblock :: proc() -> Block {
 	iblock: IBlock
 
-	block_initialize(&iblock)
+	block_init(&iblock)
 
 	iblock.id = 3
 
@@ -150,7 +136,7 @@ OBlock :: struct {
 oblock :: proc() -> Block {
 	oblock: OBlock
 
-	block_initialize(&oblock)
+	block_init(&oblock)
 
 	oblock.id = 4
 
@@ -172,7 +158,7 @@ SBlock :: struct {
 sblock :: proc() -> Block {
 	sblock: SBlock
 
-	block_initialize(&sblock)
+	block_init(&sblock)
 
 	sblock.id = 5
 
@@ -212,7 +198,7 @@ TBlock :: struct {
 tblock :: proc() -> Block {
 	tblock: TBlock
 
-	block_initialize(&tblock)
+	block_init(&tblock)
 
 	tblock.id = 6
 
@@ -252,7 +238,7 @@ ZBlock :: struct {
 zblock :: proc() -> Block {
 	zblock: ZBlock
 
-	block_initialize(&zblock)
+	block_init(&zblock)
 
 	zblock.id = 7
 

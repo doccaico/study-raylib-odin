@@ -12,7 +12,7 @@ Block :: struct {
 	column_offset:  int,
 }
 
-block_initialize :: proc(block: ^Block) {
+block_init :: proc(block: ^Block) {
 	block.cell_size = 30
 	block.rotation_state = 0
 	block.colors = get_cell_colors()
@@ -20,7 +20,7 @@ block_initialize :: proc(block: ^Block) {
 	block.column_offset = 0
 }
 
-block_deinitialize :: proc(block: ^Block) {
+block_deinit :: proc(block: ^Block) {
 	switch block.id {
 	case 1 ..< 4:
 		for i := 0; i < 4; i += 1 {
@@ -35,7 +35,7 @@ block_deinitialize :: proc(block: ^Block) {
 	}
 
 	delete(block.cells)
-	delete(block.colors)
+	colors_deinit(block.colors)
 }
 
 
