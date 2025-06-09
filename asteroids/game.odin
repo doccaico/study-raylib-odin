@@ -9,6 +9,14 @@ WINDOW_WIDTH :: 1280
 WINDOW_HEIGHT :: 800
 FPS :: 60
 
+GameStates :: enum {
+	Menu,
+	Playing,
+	ChangingLevels,
+	Paused,
+	GameOver,
+}
+
 center_window :: proc() {
 	monitor := rl.GetCurrentMonitor()
 

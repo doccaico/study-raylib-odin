@@ -49,7 +49,28 @@ main :: proc() {
 	background = rl.LoadTexture("resources/darkPurple.png")
 	defer rl.UnloadTexture(background)
 
+	// setup the camera for the game world
+	world_camera := rl.Camera2D{}
+	world_camera.zoom = 0.5
+
+	// setup world
+	world := world_create()
+	defer world_destory()
+	player_reset(&world.player_ship)
+	world.player_ship.alive = false
+	world_reset(world, 10)
+
+	// setup gamestate
+	game_state := GameStates.Menu
+
+	// start some music
+	sounds_start_bgm()
+
 	for !rl.WindowShouldClose() {
+
+		// update the sound system
+		sounds_update()
+
 		rl.BeginDrawing()
 		rl.ClearBackground(rl.BLACK)
 		rl.EndDrawing()

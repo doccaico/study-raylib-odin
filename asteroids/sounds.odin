@@ -67,3 +67,52 @@ sounds_shutdown :: proc() {
 
 	delete(sounds_effects)
 }
+
+sounds_set_thrust_state :: proc(thrusting: bool, boosting: bool) {
+	if !thrusting {
+		if rl.IsMusicStreamPlaying(sounds_thrust) {
+			rl.StopMusicStream(sounds_thrust)
+		}
+		if rl.IsMusicStreamPlaying(sounds_boost) {
+			rl.StopMusicStream(sounds_boost)
+		}
+	} else {
+		if !rl.IsMusicStreamPlaying(sounds_thrust) {
+			rl.PlayMusicStream(sounds_thrust)
+		}
+
+		if boosting {
+			if !rl.IsMusicStreamPlaying(sounds_boost) {
+				rl.PlayMusicStream(sounds_boost)
+			}
+		} else {
+			if rl.IsMusicStreamPlaying(sounds_boost) {
+				rl.StopMusicStream(sounds_boost)
+			}
+		}
+	}
+}
+
+sounds_update :: proc() {
+	if rl.IsMusicStreamPlaying(sounds_bgm) {
+		rl.UpdateMusicStream(sounds_bgm)
+	}
+	if rl.IsMusicStreamPlaying(sounds_thrust) {
+		rl.UpdateMusicStream(sounds_thrust)
+	}
+	if rl.IsMusicStreamPlaying(sounds_boost) {
+		rl.UpdateMusicStream(sounds_boost)
+	}
+}
+
+sounds_start_bgm :: proc() {
+	if !rl.IsMusicStreamPlaying(sounds_bgm) {
+		rl.PlayMusicStream(sounds_bgm)
+	}
+}
+
+sounds_stop_bgm :: proc() {
+	if rl.IsMusicStreamPlaying(sounds_bgm) {
+		rl.StopMusicStream(sounds_bgm)
+	}
+}
