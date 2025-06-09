@@ -116,3 +116,9 @@ sounds_stop_bgm :: proc() {
 		rl.StopMusicStream(sounds_bgm)
 	}
 }
+
+sounds_play_sound_effect :: proc(effect: int) {
+	if effect <= len(sounds_effects) {
+		rl.PlaySound(sounds_effects[effect])
+	}
+}

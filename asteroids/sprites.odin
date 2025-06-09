@@ -128,3 +128,7 @@ sprites_shutdown :: proc() {
 	delete(sprites_frames)
 	delete(sprites_sprite_sheets)
 }
+
+sprites_draw :: proc() {
+
+}
